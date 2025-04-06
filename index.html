@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="styles.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <main class="container">
+
+      <!-- loading -->
+      <div class="loading-container">
+        <div class="loading-icon">
+            <img src="public/icons/sun.svg" />
+        </div>
+      </div>
+
+      <!-- header -->
+      <header class="header">
+        <form action="/search" class="search-form" method="get" novalidate>
+          <input type="text" id="search" placeholder="Search for a city or address" autocomplete="off" required>
+          <button type="submit" class="search-submit-btn">
+            <img src="public/icons/search.svg"/>
+          </button>
+        </form>
+        <div class="geolocation-container">
+          <img src="/public/icons/location.svg" class="location-icon">
+          <span class="location"></span>
+        </div>
+      </header>
+
+      <!-- main content -->
+      <div class="content">
+
+        <div class="error-container">
+          <p class="error-message">
+            Error getting location. Please try again.
+          </p>
+        </div>
+
+        <!-- current weather information -->
+        <section class="current-weather-forecast weather-section">
+          <div class="current-forecast-wrap">
+
+            <img src="" class="weather-icon" />
+            <div class="featured-information">
+              <span class="temperature"></span>
+              <div class="right-column">
+                <span class="weather-description"></span>
+                <div class="temperature-min-max">
+                  <!-- max temp -->
+                  <div class="max-temperature info-module">
+                    <span class="label">High:</span>
+                    <span class="data"></span>
+                    <span class="measurement">&deg</span>
+                  </div>
+                  <!-- min temp -->
+                  <div class="min-temperature info-module">
+                    <span class="label">Low:</span>
+                    <span class="data"></span>
+                    <span class="measurement">&deg</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+                
+            <div class="bottom-column">
+              <!-- max feels like -->
+              <div class="feels-like info-module">
+                <img src="/public/icons/temperature.svg" class="info-icon">
+                <span class="label">Feels like:</span>
+                <span class="data"></span>
+                <span class="measurement">&deg</span>
+              </div>
+              <!-- wind speed -->
+              <div class="wind-speed info-module">
+                <img src="/public/icons/windspeed.svg" class="info-icon">
+                <span class="label">Wind:</span>
+                <span class="data"></span>
+                <span class="measurement">mph</span>
+              </div>
+              <!-- precip -->
+              <div class="precipitation info-module">
+                <img src="/public/icons/precipitation.svg" class="info-icon">
+                <span class="label">Precipitation:</span>
+                <span class="data"></span>
+                <span class="measurement">in</span>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- 7 day forecast -->
+        <section class="daily-weather-forecast weather-section">
+          <div class="daily-forecast-wrap">
+            <!-- weather card template -->
+            <template class="day-weather-card-template">
+              <article class="day-weather-card">
+                <img src="" class="daily-weather-icon">
+                <div class="daily-temperature"></div>
+                <div class="weekday"></div>
+              </article>
+            </template>
+
+          </div>
+        </section>
+
+        <!-- hourly forecast -->
+        <section class="hourly-weather-forecast weather-section">
+          <div class="hourly-forecast-wrap">
+            <!-- hour row template -->
+            <template class="hour-row-template">
+              <table class="hour-section">
+                <tr class="hour-row">
+                  <td>
+                    <div class="info-group">
+                      <div class="day hourly-label"></div>
+                      <div class="time"></div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="info-group">
+                      <img src="public/icons/sun.svg" class="weather-icon-hourly"/>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="info-group">
+                      <div class="hourly-label">Temp</div>
+                      <span class="hourly-temperature"></span>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="info-group">
+                      <div class="hourly-label">Feels like</div>
+                      <span class="hourly-fl-temperature"></span>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="info-group">
+                      <div class="hourly-label">Wind</div>
+                      <span class="hourly-wind"></span>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="info-group">
+                      <div class="hourly-label">Precipitation</div>
+                      <span class="hourly-precip"></span>
+                    </div>
+                  </td>
+                </tr>
+              </table>  
+            </template>
+
+            <template class="sunrise-and-sunset-template">
+              <div class="sunrise-and-sunset">
+                <div class="sunrise-sunset-title"></div>
+                <div class="sunrise-sunset-time"></div>
+                <img src="" class="sunrise-sunset-icon" />
+              </div>
+            </template>
+
+          </div>
+        </section>
+
+      </div>
+
+    </main>
+    <script type="module" src="index.js"></script>
+  </body>
+</html>
