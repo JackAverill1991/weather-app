@@ -37,15 +37,16 @@ const getReverseLocation = async (latitude, longitude) => {
     },
     body: JSON.stringify({ type: 'reverse-location', latitude, longitude })
   });
-  console.log('call reverse location');
+
   const data = await response.json();
   return data;
 }
 
-// const parseCurrentLocation = ({ results }) => {
-//   const address = results[8].formatted_address;
-//   return address;
-// }
+const parseCurrentLocation = ({ results }) => {
+  console.log(results);
+  const address = results[8].formatted_address;
+  return address;
+}
 
 
 
