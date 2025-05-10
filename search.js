@@ -20,6 +20,7 @@ searchForm.addEventListener('submit', async (e) => {
       const addressLatitude = result.results[0].geometry.location.lat;
       const addressLongitude = result.results[0].geometry.location.lng;
       const timeZone = await getTimeZone(addressLatitude, addressLongitude);
+      console.log(timeZone);
       const address = result.results[0].formatted_address;
       const weatherData = await fetchWeather(addressLatitude, addressLongitude, timeZone.timeZoneId);
       renderWeather(weatherData);

@@ -1,24 +1,21 @@
 exports.handler = async function(event) {
-  // Import fetch from Node.js
-  const fetch = (await import('node-fetch')).default;
-
-  // Get latitude and longitude
-  const { type, address, latitude, longitude } = JSON.parse(event.body);
+  // Get properties from all API requests
+  const { type, address, latitude, longitude, timestamp } = JSON.parse(event.body);
 
   // Get API key from .env file
   const apiKey = process.env.GOOGLE_API_KEY;
 
   let url;
 
-  // Pass latitude, longitude and API key into Google URL 
+  // Create URL links for all API request types
   if (type === 'location') {
     url = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${apiKey}`;
-  } 
+  }
   else if (type === 'reverse-location') {
     url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${apiKey}`;
   }
   else if (type === 'time-zone') {
-    url = `https://maps.googleapis.com/maps/api/timezone/json?location=${latitude},${longitude}&timestamp=1331161200&key=${apiKey}`;
+    url = `https://maps.googleapis.com/maps/api/timezone/json?location=${latitude},${longitude}&timestamp=${timestamp}&key=${apiKey}`;
   }
 
   try {

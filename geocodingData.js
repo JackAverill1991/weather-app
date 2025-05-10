@@ -1,5 +1,5 @@
 // Uses Google geocoding to get address information
-const getLocation = async (address) => {  
+const getLocation = async (address) => {
   const response = await fetch('/.netlify/functions/handle-api-data', {
     method: "POST",
     headers: {
@@ -14,22 +14,22 @@ const getLocation = async (address) => {
 
 
 // Uses Google Timezone API to get current timezone information
-const getTimeZone = async (latitude, longitude) => {  
+const getTimeZone = async (latitude, longitude) => {
+  const timestamp = Math.floor(Date.now() / 1000);
   const response = await fetch('/.netlify/functions/handle-api-data', {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({ type: 'time-zone', latitude, longitude })
+    body: JSON.stringify({ type: 'time-zone', latitude, longitude, timestamp })
   });
-
   const data = await response.json();
   return data;
 }
 
 
 // Uses Google reverse geocoding to get current address from longitude and latitude
-const getReverseLocation = async (latitude, longitude) => {  
+const getReverseLocation = async (latitude, longitude) => {
   const response = await fetch('/.netlify/functions/handle-api-data', {
     method: "POST",
     headers: {
@@ -39,16 +39,9 @@ const getReverseLocation = async (latitude, longitude) => {
   });
 
   const data = await response.json();
-  return data;
+  const parsedData = data.results[8].formatted_address;
+  return parsedData;
 }
-
-const parseCurrentLocation = ({ results }) => {
-  console.log(results);
-  const address = results[8].formatted_address;
-  return address;
-}
-
-
 
 
 export {
